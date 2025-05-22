@@ -1,129 +1,424 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Simple Calculator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Rahul Kumar</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
     }
 
     body {
-      background: #0f172a;
+      background: #0e0e11;
+      color: #fff;
+    }
+
+    header {
+      background: #0e0e11;
+      color: #fff;
+      padding: 30px 0;
+      text-align: center;
+      animation: slideDown 1s ease-in-out;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    nav ul {
+      list-style: none;
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: 'Segoe UI', sans-serif;
+      margin-top: 15px;
+      flex-wrap: wrap;
     }
 
-    .calculator {
-      background: #1e293b;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      width: 320px;
+    nav ul li {
+      margin: 0 15px;
     }
 
-    #display {
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #ff6b35;
+    }
+
+    section {
       width: 100%;
-      height: 60px;
-      background: #334155;
-      color: white;
-      font-size: 2rem;
-      padding: 10px;
-      text-align: right;
-      border: none;
-      border-radius: 8px;
-      margin-bottom: 20px;
+      min-height: 100vh;
+      padding: 60px 20px;
+      animation: fadeIn 2s ease-in-out;
     }
 
-    .buttons {
+    .about {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      background: #1a1a1d;
+      padding: 60px;
+      border-radius: 20px;
+      max-width: 1200px;
+      margin: auto;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-image {
+      flex: 1;
+      position: relative;
+      text-align: center;
+    }
+
+    .about-image img {
+      width: 80%;
+      max-width: 400px;
+      border-radius: 20px;
+      z-index: 10;
+      position: relative;
+    }
+
+    .about-image::before {
+      content: "";
+      position: absolute;
+      top: 10%;
+      left: 20%;
+      width: 300px;
+      height: 300px;
+      background: #ff6b35;
+      border-radius: 50% 50% 0 50%;
+      z-index: 1;
+      transform: rotate(25deg);
+    }
+
+    .skills-section {
+      max-width: 800px;
+      margin: 80px auto;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .skills-section h2 {
+      font-size: 2.5em;
+      color: #fff;
+      text-shadow: 0 0 10px #fff;
+    }
+
+    .skills-section p {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 40px;
+    }
+
+    .skills-container {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px 50px;
     }
 
-    button {
-      height: 60px;
-      font-size: 1.5rem;
-      border: none;
-      border-radius: 8px;
-      background: #475569;
+    .skill span {
+      display: block;
+      text-align: left;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .progress-bar {
+      background-color: #333;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 20px;
+    }
+
+    .progress-bar div {
+      background-color: #76d900;
+      height: 100%;
+      color: black;
+      font-size: 12px;
+      text-align: right;
+      padding-right: 10px;
+      line-height: 20px;
+      font-weight: bold;
+    }
+
+    .projects {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .projects h2 {
+      font-size: 2.8em;
+      margin-bottom: 40px;
+      color: #fff;
+    }
+
+    .project-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .project-card {
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      max-width: 350px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 2px solid #ff0000;
+    }
+
+    .project-title {
+      font-size: 1.5em;
+      margin: 15px 0 10px;
+      color: #121212;
+    }
+
+    .project-description {
+      font-size: 0.95em;
+      padding: 0 20px 20px;
+      color: #555;
+    }
+
+    .project-button {
+      background-color: red;
       color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      margin-bottom: 20px;
       cursor: pointer;
-      transition: background 0.2s ease;
     }
 
-    button:hover {
-      background: #64748b;
+    .project-button:hover {
+      background-color: darkred;
     }
 
-    .equal {
-      grid-column: span 2;
-      background: #22c55e;
+    .contact {
+      padding: 60px 20px;
     }
 
-    .equal:hover {
-      background: #16a34a;
+    .contact h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2.5rem;
+    }
+
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .contact-form,
+    .contact-info {
+      flex: 1;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .contact-form button {
+      padding: 10px 30px;
+      font-size: 1rem;
+      background: #ff6b35;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .contact-form button:hover {
+      background: #e65c25;
+    }
+
+    .contact-info p,
+    .contact-info a {
+      margin: 10px 0;
+      color: #fff;
+    }
+
+    footer {
+      background: #0e0e11;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      animation: slideUp 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideDown {
+      0% {
+        transform: translateY(-100%);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      0% {
+        transform: translateY(100%);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="calculator">
-    <input type="text" id="display" disabled />
-    <div class="buttons">
-      <button onclick="clearDisplay()">C</button>
-      <button onclick="deleteChar()">⌫</button>
-      <button onclick="appendChar('%')">%</button>
-      <button onclick="appendChar('/')">/</button>
+  <header>
+    <h1>Rahul Kumar</h1>
+    <p>Frontend Developer | Web Designer</p>
+    <nav>
+      <ul>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-      <button onclick="appendChar('7')">7</button>
-      <button onclick="appendChar('8')">8</button>
-      <button onclick="appendChar('9')">9</button>
-      <button onclick="appendChar('*')">*</button>
-
-      <button onclick="appendChar('4')">4</button>
-      <button onclick="appendChar('5')">5</button>
-      <button onclick="appendChar('6')">6</button>
-      <button onclick="appendChar('-')">-</button>
-
-      <button onclick="appendChar('1')">1</button>
-      <button onclick="appendChar('2')">2</button>
-      <button onclick="appendChar('3')">3</button>
-      <button onclick="appendChar('+')">+</button>
-
-      <button onclick="appendChar('0')">0</button>
-      <button onclick="appendChar('.')">.</button>
-      <button onclick="calculate()" class="equal">=</button>
+  <section id="about" class="about">
+    <div class="about-text">
+      <h2>Welcome to My Portfolio</h2>
+      <p>This is the landing page of my portfolio, created during the Micro IT Internship. Explore to know more about me, the projects I've worked on, and how to get in touch!</p>
     </div>
-  </div>
+    <div class="about-image">
+      <img src="Rahul_Pot-r.png" alt="Profile Image">
+    </div>
+  </section>
 
-  <script>
-    const display = document.getElementById('display');
+  <section id="skills" class="skills-section">
+    <h2>My Skills</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ab laudantium possimus molestias sapiente.</p>
+    <div class="skills-container">
+      <div class="skill">
+        <span>Photoshop</span>
+        <div class="progress-bar"><div style="width: 90%;">90%</div></div>
+      </div>
+      <div class="skill">
+        <span>jQuery</span>
+        <div class="progress-bar"><div style="width: 75%;">75%</div></div>
+      </div>
+      <div class="skill">
+        <span>HTML5</span>
+        <div class="progress-bar"><div style="width: 85%;">85%</div></div>
+      </div>
+      <div class="skill">
+        <span>CSS3</span>
+        <div class="progress-bar"><div style="width: 80%;">80%</div></div>
+      </div>
+      <div class="skill">
+        <span>WordPress</span>
+        <div class="progress-bar"><div style="width: 60%;">60%</div></div>
+      </div>
+      <div class="skill">
+        <span>PHP</span>
+        <div class="progress-bar"><div style="width: 68%;">68%</div></div>
+      </div>
+    </div>
+  </section>
 
-    function appendChar(char) {
-      display.value += char;
-    }
+  <section id="projects" class="projects">
+    <h2>My Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <img src="Netflix port.jpg" alt="Netflix Clone" class="project-image">
+        <h3 class="project-title">Netflix Clone</h3>
+        <p class="project-description">A Netflix clone is a web application that mimics the interface and features of Netflix, allowing users to browse, stream, and manage movies and TV shows.</p>
+        <button class="project-button">Click Me!</button>
+      </div>
+      <div class="project-card">
+        <img src="Recondation sys port.jpeg" alt="Recommendation System" class="project-image">
+        <h3 class="project-title">Recommendation System</h3>
+        <p class="project-description">A recommendation system is an algorithm that suggests products, content, or services to users based on their preferences, behaviors, or similar users' actions.</p>
+        <button class="project-button">Click Me!</button>
+      </div>
+      <div class="project-card">
+        <img src="portfolio port.webp" alt="Portfolio" class="project-image">
+        <h3 class="project-title">Portfolio</h3>
+        <p class="project-description">A portfolio is a collection of work or projects that showcases an individual's skills, experience, and achievements in a specific field.</p>
+        <button class="project-button">Click Me!</button>
+      </div>
+    </div>
+  </section>
 
-    function clearDisplay() {
-      display.value = '';
-    }
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <div class="contact-container">
+      <div class="contact-form">
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Email">
+        <textarea rows="6" placeholder="Message"></textarea>
+        <button>Send</button>
+      </div>
+      <div class="contact-info">
+        <p><strong>Location:</strong> India</p>
+        <p><strong>Phone:</strong> +91-8957902816</p>
+        <p><strong>Email:</strong> rahul@example.com</p>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/kumarrahul2002/" style="color:#ff6b35">linkedin.com</a></p>
+      </div>
+    </div>
+  </section>
 
-    function deleteChar() {
-      display.value = display.value.slice(0, -1);
-    }
-
-    function calculate() {
-      try {
-        display.value = eval(display.value);
-      } catch {
-        display.value = 'Error';
-      }
-    }
-  </script>
+  <footer>
+    <p>&copy; 2025 Rahul Kumar | Micro IT Internship</p>
+  </footer>
 </body>
+
 </html>
